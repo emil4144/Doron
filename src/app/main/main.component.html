@@ -1,0 +1,103 @@
+<div class="container">
+	<div class="row">
+		<div class="table-responsive">
+
+ 
+			<table class="table  table-sm" style="font-size:14px">
+				<thead>
+					<tr>
+						
+						<th colspan="4">
+							<label>
+ 								Name, Email or ID
+  								<input type="text" [formControl]="ID" (change)="FilterData()" style="width:100%">
+            				</label>
+						</th>
+						<th>
+							<label>
+								Instagram
+								<input type="text"  [formControl]="Instagram" (change)="FilterData()" style="width:100px">
+							</label>					
+						</th>
+						<th>
+							<label>
+								Facebook
+								<input type="text" style="width:100px" [formControl]="Facebook" (change)="FilterData()">
+							</label>
+						</th>
+						<th>
+							<label>
+								Twitter
+								<input type="text" style="width:100px" [formControl]="Twitter" (change)="FilterData()">
+							</label>
+						</th>
+						<th>
+							<label>
+								Blog
+								<input type="text" style="width:100px" [formControl]="Blog" (change)="FilterData()">
+							</label>
+						</th>
+						<th>
+							<label>
+								Youtube
+								<input type="text" style="width:100px" [formControl]="Youtube" (change)="FilterData()">
+							</label>
+						</th>
+						<th>
+							<label>
+								Pinterest
+								<input type="text" style="width:100px" [formControl]="Pinterest" (change)="FilterData()">
+							</label>
+						</th>						
+					</tr>
+					<tr>
+						<th><input type="checkbox" name="" disabled></th>
+						<th (click)='SortData("ID")'>ID</th>
+						<th (click)='SortData("Name")'>Name</th>
+						<th (click)='SortData("Email")'>Email</th>
+						<th (click)='SortData("Instagram")'>Instagram</th>
+						<th (click)='SortData("Facebook")'>Facebook</th>
+						<th (click)='SortData("Twitter")'>Twitter</th>
+						<th (click)='SortData("Blog")'>Blog</th>
+						<th (click)='SortData("Youtube")'>Youtube</th>
+						<th (click)='SortData("Pinterest")'>Pinterest</th>
+						<th (click)='SortData("Location")'>Location</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor='let data of allData'>
+						<td><input type="checkbox" name="" disabled></td>
+						<td>{{data.ID}}</td>
+						<td>{{data.Name}}</td>
+						<td>{{data.Email}}</td>
+						<td>{{convertk(data.Instagram)}}</td>
+						<td>{{convertk(data.Facebook)}}</td>
+						<td>{{convertk(data.Twitter)}}</td>
+						<td>{{convertk(data.Blog)}}</td>
+						<td>{{convertk(data.Youtube)}}</td>
+						<td>{{convertk(data.Pinterest)}}</td>
+						<td>{{data.Location}}</td>
+					</tr>
+				</tbody>
+			</table>	
+		</div>	   
+	</div>	
+		<ul *ngIf="pager.pages && pager.pages.length" class="pagination  justify-content-center">
+                <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+                    <a class="page-link" (click)="ChangeUrl(1)" >First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+                    <a class="page-link" (click)="ChangeUrl(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item">
+                    <a class="page-link" (click)=" ChangeUrl(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+                    <a class="page-link" (click)="ChangeUrl(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+                    <a class="page-link" (click)="ChangeUrl(pager.totalPages)">Last</a>
+                </li>
+            </ul>
+	
+</div>
