@@ -52,11 +52,11 @@ export class MainComponent implements OnInit {
   FilterData(){ 
     let address=this.router.url
     let b;
-    if( isNaN(parseInt(address.charAt(1))) || parseInt(address.charAt(1))==0){
+    if( isNaN(parseInt(address.replace("/",""))) || parseInt(address.replace("/",""))==0){
       b=1
     }
     else{
-      b=parseInt(address.charAt(1))
+      b=parseInt(address.replace("/",""))
     }
     let fd={
       id:this.ID.value,
